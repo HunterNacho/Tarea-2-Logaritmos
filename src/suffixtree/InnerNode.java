@@ -50,6 +50,9 @@ public class InnerNode extends AbstractNode {
 	
 	public ArrayList<Integer> find(String word) {
 		ArrayList<Integer> indexes = new ArrayList<Integer>();
+		for(Edge edge : children) {
+			
+		}
 		//TODO
 		return indexes;
 	}

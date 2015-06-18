@@ -24,5 +24,22 @@ public class SuffixTree {
 		headChildren.add(headerEdge);
 		head = new InnerNode(headChildren);		
 	}
+	
+	public void insert(String word, int index) {
+		head.insert(word, index);		
+	}
+	
+	public static void main(String[] args) {
+		SuffixTree sufTree = new SuffixTree();
+		sufTree.insert("banana$", 0);
+		sufTree.insert("anana$", 1);
+		sufTree.insert("nana$", 2);
+		sufTree.insert("ana$", 3);
+		sufTree.insert("na$", 4);
+		sufTree.insert("a$", 5);
+		sufTree.insert("$", 6);
+		
+		System.out.println("breakpoint");
+	}
 
 }

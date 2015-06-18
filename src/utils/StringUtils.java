@@ -12,6 +12,7 @@ public class StringUtils {
 			longest = s2;
 		}
 		
+		if(shortest.length()==0) return "";
 		int index = 0;
 		while((index < longest.length()) && (shortest.charAt(index) == longest.charAt(index))) index++;
 			
