@@ -3,11 +3,14 @@ package patriciatree;
 import java.util.ArrayList;
 
 public abstract class AbstractNode {
-	private ArrayList<Edge> children;
+	protected ArrayList<Edge> edges;
 	protected AbstractNode(ArrayList<Edge> edges) {
-		this.children = edges;
+		this.edges = edges;
 	}
-	public abstract LeafNode insert(String word);
-	
-//	public abstract 
+	public abstract String findLongestMatch(String word);
+	public abstract String getAnyWord();
+	public abstract void insert(String match, int index, String difference, Edge origin);
+	public ArrayList<Edge> getEdges() {
+		return edges;
+	}
 }
