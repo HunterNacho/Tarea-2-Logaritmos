@@ -8,12 +8,13 @@ import bookparser.BookParser;
 public class SuffixTree {
 	
 	private InnerNode head;
-	private String book;
 	
-	public SuffixTree(String path) {
+	public static int TICKS = 1000;
+	static String book;
+	
+	public SuffixTree(String path) throws IOException {
 		
-		book = path;
-//		book = BookParser.parseTextFile("/home/ekauffma/Documents/94ufos.txt");
+		book = BookParser.parseTextFile("/home/ekauffma/Documents/94ufos.txt") + "$";
 		
 		LeafNode dummyLeafNode;
 		InnerNode firstNode;
@@ -34,22 +35,23 @@ public class SuffixTree {
 
 	}
 	
-	public void insert(String text, int index) {
-		head.insert(text, index, index);		
+	public void insert(int index) {
+		head.insert(index, index);		
 	}
 	
 	public ArrayList<Integer> find(String word) {
-		return head.find(word, book);
+		return head.find(word);
 	}
 	
 	public static void main(String[] args) throws IOException {
-		SuffixTree sufTree = new SuffixTree("abracadabra$");
+		SuffixTree sufTree = new SuffixTree("ccccccccccc$");
 		
-		for(int i=0; i < sufTree.book.length(); i++) {
-			sufTree.insert(sufTree.book, i);			
+		for(int i=0; i < book.length(); i++) {
+			sufTree.insert(i);	
+			if(i%TICKS == 0) System.out.println("....inserting index " + i);
 		}
 		
-		ArrayList<Integer> indexes = sufTree.find("a");
+		ArrayList<Integer> indexes = sufTree.find("ufo");
 		
 		System.out.println(indexes.toString());
 		

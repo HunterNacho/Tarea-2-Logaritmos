@@ -11,14 +11,14 @@ public class LeafNode extends AbstractNode {
 		wordIndex = index;
 	}
 	@Override
-	public void insert(String word, int index, int currentIndex) {
+	public void insert(int index, int currentIndex) {
 	}
 	
 	public int getWordIndex() {
 		return wordIndex;
 	}
 	@Override
-	public ArrayList<Integer> find(String word, String text) {
+	public ArrayList<Integer> find(String word) {
 		return new ArrayList<Integer>();
 	}
 	

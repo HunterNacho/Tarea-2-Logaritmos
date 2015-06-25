@@ -12,15 +12,15 @@ public class InnerNode extends AbstractNode {
 	}
 
 	@Override
-	public void insert(String text, int index, int currentIndex) {
+	public void insert(int index, int currentIndex) {
 		
 		for(Edge edge : children) {
-			String edgeValue = text.substring(edge.getInitIndex(), edge.getEndIndex());
-			String longestComPref = StringUtils.longestCommonPrefix(edgeValue, text.substring(currentIndex));
+			String edgeValue = SuffixTree.book.substring(edge.getInitIndex(), edge.getEndIndex());
+			String longestComPref = StringUtils.longestCommonPrefix(edgeValue, SuffixTree.book.substring(currentIndex));
 			
 			//Matches the complete value in the edge. Continue inserting on child
 			if(longestComPref.equals(edgeValue)) {
-				edge.getNext().insert(text, index, currentIndex + longestComPref.length());
+				edge.getNext().insert(index, currentIndex + longestComPref.length());
 				return;
 			}
 			
@@ -35,10 +35,10 @@ public class InnerNode extends AbstractNode {
 				
 				int edgeCutIndex = edge.getInitIndex() + longestComPref.length();
 				int restOfTheTextIndex = currentIndex + longestComPref.length();
-				String textSecondHalf = text.substring(restOfTheTextIndex);
-				Edge newLeafEdge = new Edge(restOfTheTextIndex, text.length(), textSecondHalf, newLeaf);
+				String textSecondHalf = SuffixTree.book.substring(restOfTheTextIndex);
+				Edge newLeafEdge = new Edge(restOfTheTextIndex, SuffixTree.book.length(), textSecondHalf, newLeaf);
 				
-				String edgeSecondHalf = text.substring(edgeCutIndex, edge.getEndIndex());
+				String edgeSecondHalf = SuffixTree.book.substring(edgeCutIndex, edge.getEndIndex());
 				Edge newEdge = new Edge(edgeCutIndex, edge.getEndIndex(), edgeSecondHalf, edge.getNext());
 				
 				newNodeChildren.add(newEdge);
@@ -55,15 +55,15 @@ public class InnerNode extends AbstractNode {
 		
 		//Couldn't find any match at this level. Create new sibling
 		LeafNode newLeaf = new LeafNode(index);
-		Edge newEdge = new Edge(currentIndex, text.length(), text.substring(currentIndex), newLeaf);
+		Edge newEdge = new Edge(currentIndex, SuffixTree.book.length(), SuffixTree.book.substring(currentIndex), newLeaf);
 		children.add(newEdge);
 	}
 	
-	public ArrayList<Integer> find(String word, String text) {
+	public ArrayList<Integer> find(String word) {
 		
 		for(Edge edge : children) {
 			
-			String edgeValue = text.substring(edge.getInitIndex(), edge.getEndIndex());
+			String edgeValue = SuffixTree.book.substring(edge.getInitIndex(), edge.getEndIndex());
 			String longestComPref = StringUtils.longestCommonPrefix(edgeValue, word);
 			
 			//Word is completely consumed. Found the word. Traverse the tree to find all indexes in leaves
@@ -76,7 +76,7 @@ public class InnerNode extends AbstractNode {
 			
 			//Partial match. Continue searching for the rest of the word
 			else if(longestComPref.length()!=0 || edgeValue.equals("")) {
-				return edge.getNext().find(word.substring(longestComPref.length()), text);
+				return edge.getNext().find(word.substring(longestComPref.length()));
 			}
 									
 		}
