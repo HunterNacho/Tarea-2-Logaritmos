@@ -38,15 +38,21 @@ public class SuffixTree {
 		head.insert(text, index, index);		
 	}
 	
+	public ArrayList<Integer> find(String word) {
+		return head.find(word, book);
+	}
+	
 	public static void main(String[] args) throws IOException {
 		SuffixTree sufTree = new SuffixTree("abracadabra$");
 		
 		for(int i=0; i < sufTree.book.length(); i++) {
 			sufTree.insert(sufTree.book, i);			
 		}
-
 		
-		System.out.println("breakpoint");
+		ArrayList<Integer> indexes = sufTree.find("a");
+		
+		System.out.println(indexes.toString());
+		
 	}
 
 }

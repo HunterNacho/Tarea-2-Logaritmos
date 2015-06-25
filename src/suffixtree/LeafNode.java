@@ -17,4 +17,15 @@ public class LeafNode extends AbstractNode {
 	public int getWordIndex() {
 		return wordIndex;
 	}
+	@Override
+	public ArrayList<Integer> find(String word, String text) {
+		return new ArrayList<Integer>();
+	}
+	
+	@Override
+	public ArrayList<Integer> getAllIndexes() {
+		ArrayList<Integer> indexes = new ArrayList<Integer>();
+		indexes.add(getWordIndex());
+		return indexes;
+	}
 }

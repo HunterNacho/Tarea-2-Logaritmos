@@ -1,6 +1,7 @@
 package suffixtree;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import utils.StringUtils;
 
@@ -58,12 +59,42 @@ public class InnerNode extends AbstractNode {
 		children.add(newEdge);
 	}
 	
-	public ArrayList<Integer> find(String word) {
-		ArrayList<Integer> indexes = new ArrayList<Integer>();
+	public ArrayList<Integer> find(String word, String text) {
+		
 		for(Edge edge : children) {
 			
+			String edgeValue = text.substring(edge.getInitIndex(), edge.getEndIndex());
+			String longestComPref = StringUtils.longestCommonPrefix(edgeValue, word);
+			
+			//Word is completely consumed. Found the word. Traverse the tree to find all indexes in leaves
+			if(word.equals(longestComPref)) {
+				return edge.getNext().getAllIndexes();
+			}
+//			
+//			//No matching. Continue with next sibling
+//			else if(longestComPref.equals("")) continue;
+			
+			//Partial match. Continue searching for the rest of the word
+			else if(longestComPref.length()!=0 || edgeValue.equals("")) {
+				return edge.getNext().find(word.substring(longestComPref.length()), text);
+			}
+									
 		}
-		//TODO
+		
+		//Could not go deeper. Not found
+		return new ArrayList<Integer>();
+	}
+
+	@Override
+	public ArrayList<Integer> getAllIndexes() {
+		ArrayList<Integer> indexes = new ArrayList<Integer>();
+		
+		for(Edge edge : children) {
+			indexes.addAll(edge.getNext().getAllIndexes());
+		}
+		
+		Collections.sort(indexes);
 		return indexes;
 	}
+
 }
