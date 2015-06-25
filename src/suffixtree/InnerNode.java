@@ -11,26 +11,34 @@ public class InnerNode extends AbstractNode {
 	}
 
 	@Override
-	public void insert(String word, int index) {
+	public void insert(String text, int index, int currentIndex) {
 		
 		for(Edge edge : children) {
-			String longestComPref = StringUtils.longestCommonPrefix(edge.getValue(), word);
+			String edgeValue = text.substring(edge.getInitIndex(), edge.getEndIndex());
+			String longestComPref = StringUtils.longestCommonPrefix(edgeValue, text.substring(currentIndex));
 			
-			if(longestComPref.equals(edge.getValue())) {
-				edge.getNext().insert(word.substring(longestComPref.length()), index);
+			//Matches the complete value in the edge. Continue inserting on child
+			if(longestComPref.equals(edgeValue)) {
+				edge.getNext().insert(text, index, currentIndex + longestComPref.length());
 				return;
 			}
+			
+			//No matching. Continue with next sibling
 			else if(longestComPref.equals("")) continue;
+			
+			//Partial match. Need to cut the edge
 			else {
 				LeafNode newLeaf = new LeafNode(index);
 				InnerNode newNode;
 				ArrayList<Edge> newNodeChildren = new ArrayList<Edge>();
 				
-				String wordSecondHalf = word.substring(longestComPref.length());
-				Edge newLeafEdge = new Edge(wordSecondHalf, newLeaf);
+				int edgeCutIndex = edge.getInitIndex() + longestComPref.length();
+				int restOfTheTextIndex = currentIndex + longestComPref.length();
+				String textSecondHalf = text.substring(restOfTheTextIndex);
+				Edge newLeafEdge = new Edge(restOfTheTextIndex, text.length(), textSecondHalf, newLeaf);
 				
-				String edgeSecondHalf = edge.getValue().substring(longestComPref.length());
-				Edge newEdge = new Edge(edgeSecondHalf, edge.getNext());
+				String edgeSecondHalf = text.substring(edgeCutIndex, edge.getEndIndex());
+				Edge newEdge = new Edge(edgeCutIndex, edge.getEndIndex(), edgeSecondHalf, edge.getNext());
 				
 				newNodeChildren.add(newEdge);
 				newNodeChildren.add(newLeafEdge);
@@ -39,12 +47,14 @@ public class InnerNode extends AbstractNode {
 				
 				edge.setNext(newNode);
 				edge.setValue(longestComPref);
+				edge.setEndIndex(edgeCutIndex);
 				return;
 			}
 		}
 		
+		//Couldn't find any match at this level. Create new sibling
 		LeafNode newLeaf = new LeafNode(index);
-		Edge newEdge = new Edge(word, newLeaf);
+		Edge newEdge = new Edge(currentIndex, text.length(), text.substring(currentIndex), newLeaf);
 		children.add(newEdge);
 	}
 	

@@ -12,9 +12,9 @@ public class StringUtils {
 			longest = s2;
 		}
 		
-		if(shortest.length()==0) return "";
+//		if(shortest.length()==0) return "";
 		int index = 0;
-		while((index < longest.length()) && (shortest.charAt(index) == longest.charAt(index))) index++;
+		while((index < shortest.length()) && (shortest.charAt(index) == longest.charAt(index))) index++;
 			
 		
 		return longest.substring(0, index);

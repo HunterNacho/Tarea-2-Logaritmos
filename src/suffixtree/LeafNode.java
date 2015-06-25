@@ -11,7 +11,7 @@ public class LeafNode extends AbstractNode {
 		wordIndex = index;
 	}
 	@Override
-	public void insert(String word, int index) {
+	public void insert(String word, int index, int currentIndex) {
 	}
 	
 	public int getWordIndex() {

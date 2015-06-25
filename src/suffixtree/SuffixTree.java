@@ -1,12 +1,19 @@
 package suffixtree;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import bookparser.BookParser;
 
 public class SuffixTree {
 	
-	InnerNode head;
+	private InnerNode head;
+	private String book;
 	
-	public SuffixTree() {
+	public SuffixTree(String path) {
+		
+		book = path;
+//		book = BookParser.parseTextFile("/home/ekauffma/Documents/94ufos.txt");
 		
 		LeafNode dummyLeafNode;
 		InnerNode firstNode;
@@ -15,29 +22,29 @@ public class SuffixTree {
 		ArrayList<Edge> firstNodeChildren = new ArrayList<Edge>();
 		
 		dummyLeafNode = new LeafNode(-1);
-		dummyEdge = new Edge("$", dummyLeafNode); 
+		dummyEdge = new Edge(book.length()-1, book.length(), "$", dummyLeafNode); 
 		
 		firstNodeChildren.add(dummyEdge);
 		firstNode = new InnerNode(firstNodeChildren);
-		headerEdge = new Edge("", firstNode);
+		headerEdge = new Edge(0, 0, "", firstNode);
 		
 		headChildren.add(headerEdge);
 		head = new InnerNode(headChildren);		
+		
+
 	}
 	
-	public void insert(String word, int index) {
-		head.insert(word, index);		
+	public void insert(String text, int index) {
+		head.insert(text, index, index);		
 	}
 	
-	public static void main(String[] args) {
-		SuffixTree sufTree = new SuffixTree();
-		sufTree.insert("banana$", 0);
-		sufTree.insert("anana$", 1);
-		sufTree.insert("nana$", 2);
-		sufTree.insert("ana$", 3);
-		sufTree.insert("na$", 4);
-		sufTree.insert("a$", 5);
-		sufTree.insert("$", 6);
+	public static void main(String[] args) throws IOException {
+		SuffixTree sufTree = new SuffixTree("abracadabra$");
+		
+		for(int i=0; i < sufTree.book.length(); i++) {
+			sufTree.insert(sufTree.book, i);			
+		}
+
 		
 		System.out.println("breakpoint");
 	}
