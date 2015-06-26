@@ -14,8 +14,8 @@ public class SuffixTree {
 	
 	public SuffixTree(String path) throws IOException {
 		
-		book = BookParser.parseTextFile("/home/ekauffma/Documents/94ufos.txt") + "$";
-		
+		book = " " + BookParser.parseTextFile(path) + " $";
+//		book = path;
 		LeafNode dummyLeafNode;
 		InnerNode firstNode;
 		Edge dummyEdge, headerEdge;
@@ -44,14 +44,15 @@ public class SuffixTree {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		SuffixTree sufTree = new SuffixTree("ccccccccccc$");
-		
+		SuffixTree sufTree = new SuffixTree("/home/ekauffma/Documents/94ufos.txt");
+//		SuffixTree sufTree = new SuffixTree(" abra cad abra $");
 		for(int i=0; i < book.length(); i++) {
 			sufTree.insert(i);	
 			if(i%TICKS == 0) System.out.println("....inserting index " + i);
 		}
 		
-		ArrayList<Integer> indexes = sufTree.find("ufo");
+		System.out.println(book);
+		ArrayList<Integer> indexes = sufTree.find(" ufo ");
 		
 		System.out.println(indexes.toString());
 		

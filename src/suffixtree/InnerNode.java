@@ -29,7 +29,7 @@ public class InnerNode extends AbstractNode {
 			
 			//Partial match. Need to cut the edge
 			else {
-				LeafNode newLeaf = new LeafNode(index);
+				LeafNode newLeaf = new LeafNode(index+1);
 				InnerNode newNode;
 				ArrayList<Edge> newNodeChildren = new ArrayList<Edge>();
 				
@@ -47,7 +47,6 @@ public class InnerNode extends AbstractNode {
 				newNode = new InnerNode(newNodeChildren);
 				
 				edge.setNext(newNode);
-				edge.setValue(longestComPref);
 				edge.setEndIndex(edgeCutIndex);
 				return;
 			}

@@ -3,7 +3,6 @@ package suffixtree;
 import java.util.ArrayList;
 
 import suffixtree.Edge;
-import suffixtree.LeafNode;
 
 public abstract class AbstractNode {
 	protected ArrayList<Edge> children;
