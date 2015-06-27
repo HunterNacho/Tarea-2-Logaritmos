@@ -29,5 +29,12 @@ public class LeafNode extends AbstractNode {
 		else
 			origin.split(match, index, difference);
 	}
+
+	@Override
+	public ArrayList<Integer> find(String pattern) {
+		if (pattern.equals(""))
+			return occurrences;
+		return new ArrayList<Integer>();
+	}
 	
 }

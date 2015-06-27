@@ -9,6 +9,7 @@ public abstract class AbstractNode {
 	}
 	public abstract String findLongestMatch(String word);
 	public abstract String getAnyWord();
+	public abstract ArrayList<Integer> find(String pattern);
 	public abstract void insert(String match, int index, String difference, Edge origin);
 	public ArrayList<Edge> getEdges() {
 		return edges;
