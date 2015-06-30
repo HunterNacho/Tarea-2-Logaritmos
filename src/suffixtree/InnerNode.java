@@ -58,7 +58,7 @@ public class InnerNode extends AbstractNode {
 		
 		for(Edge edge : children) {
 			
-			String edgeValue = SuffixTree.book.substring(edge.getInitIndex(), edge.getEndIndex());
+//			String edgeValue = SuffixTree.book.substring(edge.getInitIndex(), edge.getEndIndex());
 			String longestComPref = findLongestCommonPrefix(edge.getInitIndex(), edge.getEndIndex(), word);
 			
 			//Word is completely consumed. Found the word. Traverse the tree to find all indexes in leaves
@@ -70,7 +70,7 @@ public class InnerNode extends AbstractNode {
 //			else if(longestComPref.equals("")) continue;
 			
 			//Partial match. Continue searching for the rest of the word
-			else if(longestComPref.length()!=0 || edgeValue.equals("")) {
+			else if(longestComPref.length()!=0 || (edge.getEndIndex() - edge.getInitIndex() == 0)) {
 				return edge.getNext().find(word.substring(longestComPref.length()));
 			}
 									
