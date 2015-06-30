@@ -3,8 +3,6 @@ package suffixtree;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import utils.StringUtils;
-
 public class InnerNode extends AbstractNode {
 	
 	public InnerNode(ArrayList<Edge> edges) {
@@ -15,12 +13,12 @@ public class InnerNode extends AbstractNode {
 	public void insert(int index, int currentIndex) {
 		
 		for(Edge edge : children) {
-			String edgeValue = SuffixTree.book.substring(edge.getInitIndex(), edge.getEndIndex());
-			String longestComPref = StringUtils.longestCommonPrefix(edgeValue, SuffixTree.book.substring(currentIndex));
-			
+//			String edgeValue = SuffixTree.book.substring(edge.getInitIndex(), edge.getEndIndex());
+			String longestComPref = insertLongestCommonPrefix(edge.getInitIndex(), edge.getEndIndex(), currentIndex);
+			int longestComPrefLen = longestComPref.length();
 			//Matches the complete value in the edge. Continue inserting on child
-			if(longestComPref.equals(edgeValue)) {
-				edge.getNext().insert(index, currentIndex + longestComPref.length());
+			if(longestComPrefLen == (edge.getEndIndex() - edge.getInitIndex())) {
+				edge.getNext().insert(index, currentIndex + longestComPrefLen);
 				return;
 			}
 			
@@ -33,13 +31,11 @@ public class InnerNode extends AbstractNode {
 				InnerNode newNode;
 				ArrayList<Edge> newNodeChildren = new ArrayList<Edge>();
 				
-				int edgeCutIndex = edge.getInitIndex() + longestComPref.length();
-				int restOfTheTextIndex = currentIndex + longestComPref.length();
-				String textSecondHalf = SuffixTree.book.substring(restOfTheTextIndex);
-				Edge newLeafEdge = new Edge(restOfTheTextIndex, SuffixTree.book.length(), textSecondHalf, newLeaf);
+				int edgeCutIndex = edge.getInitIndex() + longestComPrefLen;
+				int restOfTheTextIndex = currentIndex + longestComPrefLen;
+				Edge newLeafEdge = new Edge(restOfTheTextIndex, SuffixTree.bookLen, newLeaf);
 				
-				String edgeSecondHalf = SuffixTree.book.substring(edgeCutIndex, edge.getEndIndex());
-				Edge newEdge = new Edge(edgeCutIndex, edge.getEndIndex(), edgeSecondHalf, edge.getNext());
+				Edge newEdge = new Edge(edgeCutIndex, edge.getEndIndex(), edge.getNext());
 				
 				newNodeChildren.add(newEdge);
 				newNodeChildren.add(newLeafEdge);
@@ -53,8 +49,8 @@ public class InnerNode extends AbstractNode {
 		}
 		
 		//Couldn't find any match at this level. Create new sibling
-		LeafNode newLeaf = new LeafNode(index);
-		Edge newEdge = new Edge(currentIndex, SuffixTree.book.length(), SuffixTree.book.substring(currentIndex), newLeaf);
+		LeafNode newLeaf = new LeafNode(index+1);
+		Edge newEdge = new Edge(currentIndex, SuffixTree.bookLen, newLeaf);
 		children.add(newEdge);
 	}
 	
@@ -63,7 +59,7 @@ public class InnerNode extends AbstractNode {
 		for(Edge edge : children) {
 			
 			String edgeValue = SuffixTree.book.substring(edge.getInitIndex(), edge.getEndIndex());
-			String longestComPref = StringUtils.longestCommonPrefix(edgeValue, word);
+			String longestComPref = findLongestCommonPrefix(edge.getInitIndex(), edge.getEndIndex(), word);
 			
 			//Word is completely consumed. Found the word. Traverse the tree to find all indexes in leaves
 			if(word.equals(longestComPref)) {
@@ -94,6 +90,36 @@ public class InnerNode extends AbstractNode {
 		
 		Collections.sort(indexes);
 		return indexes;
+	}
+	
+	public String insertLongestCommonPrefix(int edgeInitIndex, int edgeEndIndex, int currentIndex) {
+		StringBuilder longestCommPref = new StringBuilder();
+		int edgeIndex = edgeInitIndex;
+		int textIndex = currentIndex;
+		
+		while(edgeIndex < edgeEndIndex && SuffixTree.book.charAt(edgeIndex) == SuffixTree.book.charAt(textIndex)) {
+			longestCommPref.append(SuffixTree.book.charAt(edgeIndex));
+			edgeIndex+=1;
+			textIndex+=1;
+		}
+		
+		return longestCommPref.toString();
+	}
+	
+	public String findLongestCommonPrefix(int edgeInitIndex, int edgeEndIndex, String word) {
+		StringBuilder longestCommPref = new StringBuilder();
+		int edgeIndex = edgeInitIndex;
+		int wordIndex = 0;
+		int wordLen = word.length();
+		
+		while(wordIndex < wordLen && edgeIndex < edgeEndIndex && word.charAt(wordIndex) == SuffixTree.book.charAt(edgeIndex)) {
+			longestCommPref.append(word.charAt(wordIndex));
+			wordIndex+=1;
+			edgeIndex+=1;
+		}
+		
+		return longestCommPref.toString();
+		
 	}
 
 }

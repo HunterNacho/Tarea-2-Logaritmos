@@ -4,7 +4,7 @@ public class Edge {
 	private AbstractNode next;
 	int initIndex, endIndex;
 	
-	public Edge(int init, int end, String value, AbstractNode next) {
+	public Edge(int init, int end, AbstractNode next) {
 
 		this.next = next;
 		this.initIndex = init;
