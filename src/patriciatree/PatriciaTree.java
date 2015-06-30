@@ -20,7 +20,11 @@ public class PatriciaTree {
 			currentIndex += words[i].length();
 		}
 	}
-
+	
+	public ArrayList<Integer> find(String pattern) {
+		return getRoot().find(pattern);
+	}
+	
 	private void insert(String word, int index) {
 		String leafText = getRoot().findLongestMatch(word);
 		reinsert(word, index, leafText);
