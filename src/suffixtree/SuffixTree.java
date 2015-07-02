@@ -76,7 +76,7 @@ public class SuffixTree {
 //			System.out.println(wordsToSearch.toString());
 			
 			
-			//Patricia Tree
+			//Patricia Tree 
 			System.out.println("Building PatriciaTree...");
 			long startBuild_time = System.currentTimeMillis(); 
 			
@@ -85,7 +85,7 @@ public class SuffixTree {
 			long endBuild_time = System.currentTimeMillis();
 			long build_time = endBuild_time - startBuild_time;
 			
-			System.out.println("Searching words...");
+			System.out.println("Searching words using Patricia Tree...");
 			long startSearch_time = System.currentTimeMillis();
 			for(int i = 0; i < wordsToSearch.size(); i++) {
 				String word = wordsToSearch.get(i);
@@ -109,7 +109,7 @@ public class SuffixTree {
 			endBuild_time = System.currentTimeMillis();
 			build_time = endBuild_time - startBuild_time;
 			
-			System.out.println("Searching words...");
+			System.out.println("Searching words using Suffix Tree...");
 			startSearch_time = System.currentTimeMillis();
 			for(int i = 0; i < wordsToSearch.size(); i++) {
 				String word = " " + wordsToSearch.get(i) + " ";
