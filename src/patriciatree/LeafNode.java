@@ -23,7 +23,8 @@ public class LeafNode extends AbstractNode {
 
 	@Override
 	public void insert(String match, int index, String difference, Edge origin) {
-		assert(match.equals(""));
+		if (!match.equals(""))
+			throw new RuntimeException("Esto no debió pasar!!");
 		if (difference.equals(""))
 			occurrences.add(index);
 		else

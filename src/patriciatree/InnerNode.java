@@ -66,7 +66,7 @@ public class InnerNode extends AbstractNode {
 		}
 		for (Edge edge : edges) {
 			String path = edge.getString();
-			if (match.length() >= path.length() && match.substring(0, path.length()).equals(path)) {
+			if (path.length() > 0 && match.length() >= path.length() && match.substring(0, path.length()).equals(path)) {
 				edge.getNext().insert(match.substring(path.length()), index, difference, edge);
 				return;
 			}
