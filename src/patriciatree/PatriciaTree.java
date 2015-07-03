@@ -1,6 +1,10 @@
 package patriciatree;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import bookparser.BookParser;
 
 public class PatriciaTree {
 	private AbstractNode header;
@@ -17,7 +21,7 @@ public class PatriciaTree {
 		int currentIndex = 0;
 		for (int i = 0; i < words.length; i++) {
 			this.insert(words[i], currentIndex);
-			currentIndex += words[i].length();
+			currentIndex += words[i].length() + 1;
 		}
 	}
 	
@@ -49,8 +53,10 @@ public class PatriciaTree {
 	/*
 	 * Para propósitos de prueba
 	 */
-	public static void main(String[] args) {
-		String text = "romane romanus romulus rubens ruber rubicon rubicundus";
+	public static void main(String[] args) throws IOException {
+		String text;
+		//text = "romane romanus romulus rubens ruber rubicon rubicundus";
+		text = BookParser.parseTextFile("/home/nacho/Documentos/Algoritmos2/Tarea-2-Logaritmos/libros/anatomyOfMelancholy.txt");
 		PatriciaTree testTree = new PatriciaTree(text);
 		System.out.println(testTree);
 	}
