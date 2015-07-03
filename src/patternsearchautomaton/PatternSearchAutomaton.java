@@ -73,4 +73,10 @@ public class PatternSearchAutomaton {
 		}
 		return result;
 	}
+	
+	public static void main(String[] args) {
+		
+		PatternSearchAutomaton pSA = new PatternSearchAutomaton(" abra ");
+		System.out.println(pSA.find(" abra cad abra "));
+	}
 }
