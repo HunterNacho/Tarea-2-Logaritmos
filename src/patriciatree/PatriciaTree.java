@@ -29,8 +29,7 @@ public class PatriciaTree {
 	}
 	
 	private void insert(String word, int index) {
-		String leafText = getRoot().findLongestMatch(word.concat("$"));
-		//Agregar $ a todos los lugares relevantes.
+		String leafText = getRoot().findLongestMatch(word);
 		reinsert(word, index, leafText);
 	}
 	
@@ -54,9 +53,9 @@ public class PatriciaTree {
 	 * Para propósitos de prueba
 	 */
 	public static void main(String[] args) throws IOException {
-		String text;
-		text = "romane romanus romulus rubens ruber rubicon rubicundus";
-		PatriciaTree testTree = new PatriciaTree(BookParser.parseTextFile("/home/nacho/Documentos/Algoritmos2/Tarea-2-Logaritmos/libros/anatomyOfMelancholy.txt").substring(0, 1000));
+//		String text;
+//		text = "romane romanus romulus rubens ruber rubicon rubicundus";
+		PatriciaTree testTree = new PatriciaTree(BookParser.parseTextFile("/u/a/2013/icuevas/Documents/Algoritmos2/T2/Tarea-2-Logaritmos/libros/anatomyOfMelancholy.txt").substring(0, 1000));  
 		System.out.println(testTree);
 	}
 	

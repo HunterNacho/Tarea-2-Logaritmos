@@ -22,6 +22,8 @@ public class Edge {
 	void split(String match, int index, String difference) {
 		String oldText = string.substring(match.length());
 		String newText = string.substring(0, match.length());
+		if (newText.equals("") && !string.equals(""))
+			throw new RuntimeException("AHHHHHHHHHHHHHHHHHHHHHHHHHH!!!");
 		Edge oldEdge = new Edge(oldText, this.next);
 		Edge newEdge = new Edge(difference, new LeafNode(index));
 		ArrayList<Edge> newEdges = new ArrayList<Edge>();
