@@ -1,6 +1,5 @@
 package patriciatree;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -30,7 +29,8 @@ public class PatriciaTree {
 	}
 	
 	private void insert(String word, int index) {
-		String leafText = getRoot().findLongestMatch(word);
+		String leafText = getRoot().findLongestMatch(word.concat("$"));
+		//Agregar $ a todos los lugares relevantes.
 		reinsert(word, index, leafText);
 	}
 	
@@ -55,9 +55,8 @@ public class PatriciaTree {
 	 */
 	public static void main(String[] args) throws IOException {
 		String text;
-		//text = "romane romanus romulus rubens ruber rubicon rubicundus";
-		text = BookParser.parseTextFile("/home/nacho/Documentos/Algoritmos2/Tarea-2-Logaritmos/libros/anatomyOfMelancholy.txt");
-		PatriciaTree testTree = new PatriciaTree(text);
+		text = "romane romanus romulus rubens ruber rubicon rubicundus";
+		PatriciaTree testTree = new PatriciaTree(BookParser.parseTextFile("/home/nacho/Documentos/Algoritmos2/Tarea-2-Logaritmos/libros/anatomyOfMelancholy.txt").substring(0, 1000));
 		System.out.println(testTree);
 	}
 	

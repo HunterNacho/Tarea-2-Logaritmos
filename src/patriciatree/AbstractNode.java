@@ -11,6 +11,9 @@ public abstract class AbstractNode {
 	public abstract String getAnyWord();
 	public abstract ArrayList<Integer> find(String pattern);
 	public abstract void insert(String match, int index, String difference, Edge origin);
+	public boolean isLeaf() {
+		return false;
+	}
 	public ArrayList<Edge> getEdges() {
 		return edges;
 	}

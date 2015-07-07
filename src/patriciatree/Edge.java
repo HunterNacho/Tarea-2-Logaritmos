@@ -25,8 +25,7 @@ public class Edge {
 		Edge oldEdge = new Edge(oldText, this.next);
 		Edge newEdge = new Edge(difference, new LeafNode(index));
 		ArrayList<Edge> newEdges = new ArrayList<Edge>();
-		if (!oldText.equals(""))
-			newEdges.add(oldEdge);
+		newEdges.add(oldEdge);
 		newEdges.add(newEdge);
 		this.string = newText;
 		this.next = new InnerNode(newEdges);

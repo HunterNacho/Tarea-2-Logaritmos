@@ -23,8 +23,7 @@ public class LeafNode extends AbstractNode {
 
 	@Override
 	public void insert(String match, int index, String difference, Edge origin) {
-		if (!match.equals(""))
-			throw new RuntimeException("Esto no debió pasar!!");
+		if (!match.equals("")) throw new RuntimeException("Esto no debió pasar!!");
 		if (difference.equals(""))
 			occurrences.add(index);
 		else
@@ -36,6 +35,11 @@ public class LeafNode extends AbstractNode {
 		if (pattern.equals(""))
 			return occurrences;
 		return new ArrayList<Integer>();
+	}
+
+	@Override
+	public boolean isLeaf() {
+		return true;
 	}
 	
 }
