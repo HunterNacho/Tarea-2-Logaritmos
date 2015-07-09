@@ -58,17 +58,14 @@ public class InnerNode extends AbstractNode {
 
 	@Override
 	public void insert(String match, int index, String difference, Edge origin) {
-		if (match.equals("") && !difference.equals("")) {
-			LeafNode newNode = new LeafNode(index);
-			Edge newEdge = new Edge(difference, newNode);
-			edges.add(newEdge);
-			return;
-		}
-		else if (match.equals("")) {
-			for (Edge edge : edges) {
-				if (edge.getString().equals("")) {
-					if (!edge.getNext().isLeaf()) throw new RuntimeException("Esto no debió pasar!!");
-					edge.getNext().insert("", index, "", edge);
+		if (match.equals("")) {
+			if (difference.equals("")) {
+				for (Edge edge : edges) {
+					if (edge.getString().equals("")) {
+						if (!edge.getNext().isLeaf()) throw new RuntimeException("Esto no debió pasar!!");
+						edge.getNext().insert("", index, "", edge);
+						return;
+					}
 				}
 			}
 			LeafNode newNode = new LeafNode(index);
@@ -78,10 +75,10 @@ public class InnerNode extends AbstractNode {
 		}
 		for (Edge edge : edges) {
 			String path = edge.getString();
-			/*if (path.length() > 0 && match.length() >= path.length() && match.substring(0, path.length()).equals(path)) {
+			if (path.length() > 0 && match.length() >= path.length() && match.substring(0, path.length()).equals(path)) {
 				edge.getNext().insert(match.substring(path.length()), index, difference, edge);
 				return;
-			}*/
+			}
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < Math.min(match.length(), path.length()); i++) {
 				if (match.charAt(i) != path.charAt(i))
