@@ -8,7 +8,7 @@ import bookparser.BookParser;
 public class PatriciaTree {
 	private AbstractNode header;
 	public PatriciaTree() {
-		Edge rootEdge = new Edge("", new LeafNode(-1));
+		Edge rootEdge = new Edge("", new LeafNode(-1)/*, true*/);
 		ArrayList<Edge> pathToRoot = new ArrayList<Edge>();
 		pathToRoot.add(rootEdge);
 		header = new InnerNode(pathToRoot);
@@ -55,7 +55,7 @@ public class PatriciaTree {
 	public static void main(String[] args) throws IOException {
 //		String text;
 //		text = "romane romanus romulus rubens ruber rubicon rubicundus";
-		PatriciaTree testTree = new PatriciaTree(BookParser.parseTextFile("/u/a/2013/icuevas/Documents/Algoritmos2/T2/Tarea-2-Logaritmos/libros/anatomyOfMelancholy.txt").substring(0, 1000));  
+		PatriciaTree testTree = new PatriciaTree(BookParser.parseTextFile("/home/nacho/Documentos/Algoritmos2/Tarea-2-Logaritmos/libros/anatomyOfMelancholy.txt"));  
 		System.out.println(testTree);
 	}
 	

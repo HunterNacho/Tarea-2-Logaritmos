@@ -27,7 +27,7 @@ public class LeafNode extends AbstractNode {
 		if (difference.equals(""))
 			occurrences.add(index);
 		else
-			origin.split(match, index, difference);
+			origin.split(origin.getString(), index, difference);
 	}
 
 	@Override

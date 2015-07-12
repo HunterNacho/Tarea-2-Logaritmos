@@ -15,12 +15,12 @@ public class PatternSearchAutomaton {
 	
 	private int charToIndex(char c) {
 		if (c == ' ')
-			return 27;
+			return 26;
 		return (int) (c - 'a');
 	}
 	
 	private char indexToChar(int i) {
-		if (i == 27)
+		if (i == 26)
 			return ' ';
 		return (char) ( i + 'a');
 	}
