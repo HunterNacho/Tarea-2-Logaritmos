@@ -3,8 +3,6 @@ package patriciatree;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import bookparser.BookParser;
-
 public class PatriciaTree {
 	private AbstractNode header;
 	public PatriciaTree() {

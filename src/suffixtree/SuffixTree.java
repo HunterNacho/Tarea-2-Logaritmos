@@ -1,11 +1,7 @@
 package suffixtree;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
-
-import patriciatree.PatriciaTree;
 import bookparser.BookParser;
 
 
