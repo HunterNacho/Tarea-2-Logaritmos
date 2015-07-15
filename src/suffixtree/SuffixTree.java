@@ -50,6 +50,16 @@ public class SuffixTree {
 		return head.find(word);
 	}
 	
+	public static void main(String[] args) throws IOException {
+		SuffixTree sufTree = new SuffixTree(" hola hola hola hola hola hola hola hola hola hola hola hola $");
+		for(int i=0; i < bookLen; i++) {
+			sufTree.insert(i);
+		}
+		
+		System.out.println(sufTree.find(" hola "));
 
+	}
 
 }
+
+

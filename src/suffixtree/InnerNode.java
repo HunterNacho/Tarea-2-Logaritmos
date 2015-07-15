@@ -27,7 +27,7 @@ public class InnerNode extends AbstractNode {
 			
 			//Partial match. Need to cut the edge
 			else {
-				LeafNode newLeaf = new LeafNode(index+1);
+				LeafNode newLeaf = new LeafNode(index);
 				InnerNode newNode;
 				ArrayList<Edge> newNodeChildren = new ArrayList<Edge>();
 				
@@ -49,7 +49,7 @@ public class InnerNode extends AbstractNode {
 		}
 		
 		//Couldn't find any match at this level. Create new sibling
-		LeafNode newLeaf = new LeafNode(index+1);
+		LeafNode newLeaf = new LeafNode(index);
 		Edge newEdge = new Edge(currentIndex, SuffixTree.bookLen, newLeaf);
 		children.add(newEdge);
 	}

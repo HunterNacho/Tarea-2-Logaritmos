@@ -76,7 +76,14 @@ public class PatternSearchAutomaton {
 	
 	public static void main(String[] args) {
 		
-		PatternSearchAutomaton pSA = new PatternSearchAutomaton(" abra ");
-		System.out.println(pSA.find(" abra cad abra "));
+		PatternSearchAutomaton pSA1 = new PatternSearchAutomaton(" na ");
+		PatternSearchAutomaton pSA2 = new PatternSearchAutomaton("na");
+		
+		
+		System.out.println(pSA1.find(" banana na ")); 
+		System.out.println(pSA2.find(" banana na "));
+		
+		System.out.println(pSA1.find("banana na"));
+		System.out.println(pSA2.find("banana na"));
 	}
 }

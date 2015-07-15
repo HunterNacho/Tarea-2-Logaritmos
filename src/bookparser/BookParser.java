@@ -24,5 +24,9 @@ public class BookParser {
 	    reader.close();
 	    return stringBuilder.toString().trim();
 	}
+	
+	public static void main(String[] args) throws IOException {
+		System.out.println(BookParser.parseTextFile("/home/ekauffma/Documents/94ufos.txt"));
+	}
 }
 

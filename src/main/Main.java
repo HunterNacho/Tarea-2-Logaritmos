@@ -89,12 +89,6 @@ public class Main {
 			
 		}
 		
-//		SuffixTree sufTree = new SuffixTree(" b an an as $");
-//		for(int i=0; i < bookLen; i++) {
-//			sufTree.insert(i);
-//		}
-//		
-//		System.out.println(sufTree.find(" an "));
 	}
 
 }

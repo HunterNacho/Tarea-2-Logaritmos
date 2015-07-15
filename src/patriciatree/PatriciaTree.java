@@ -53,10 +53,12 @@ public class PatriciaTree {
 	 * Para propósitos de prueba
 	 */
 	public static void main(String[] args) throws IOException {
-//		String text;
-//		text = "romane romanus romulus rubens ruber rubicon rubicundus";
-		PatriciaTree testTree = new PatriciaTree(BookParser.parseTextFile("/home/nacho/Documentos/Algoritmos2/Tarea-2-Logaritmos/libros/anatomyOfMelancholy.txt"));  
-		System.out.println(testTree);
+		String text;
+		text = "romane romanus romulus rubens ruber rubicon rubicundus rubens";
+//		PatriciaTree testTree = new PatriciaTree(BookParser.parseTextFile("/home/nacho/Documentos/Algoritmos2/Tarea-2-Logaritmos/libros/anatomyOfMelancholy.txt"));
+		PatriciaTree testTree = new PatriciaTree(text);  
+
+		System.out.println(testTree.find("romane"));
 	}
 	
 }
