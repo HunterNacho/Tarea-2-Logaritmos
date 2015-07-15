@@ -11,14 +11,16 @@ public class InnerNode extends AbstractNode {
 	public ArrayList<Integer> find(String pattern) {
 		for (Edge edge : edges) {
 			String path = edge.getString();
+			if (path.length() > pattern.length())
+				continue;
 			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < Math.min(pattern.length(), path.length()); i++) {
+			for (int i = 0; i < path.length(); i++) {
 				if (pattern.charAt(i) != path.charAt(i))
 					break;
 				sb.append(pattern.charAt(i));
 			}
 			String commonString = sb.toString();
-			if (commonString.length() == 0 && path.length() > 0)
+			if (commonString.length() == 0 && (path.length() > 0 || pattern.length() > 0))
 				continue;
 			String nextWord = pattern.length() > path.length() ? pattern.substring(path.length()) : "";
 			return edge.getNext().find(nextWord);

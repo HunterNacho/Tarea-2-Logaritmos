@@ -22,7 +22,7 @@ public class PatternSearchAutomaton {
 	private char indexToChar(int i) {
 		if (i == 26)
 			return ' ';
-		return (char) ( i + 'a');
+		return (char) (i + 'a');
 	}
 	
 	public boolean isInFinalState() {
@@ -40,24 +40,14 @@ public class PatternSearchAutomaton {
 
 	private int computeNextState(int currentState, char nextChar) {
 		String newWord = pattern.substring(0, currentState).concat(Character.toString(nextChar));
-		if (currentState < pattern.length() && pattern.getBytes()[currentState] == nextChar)
+		if (currentState < pattern.length() && pattern.charAt(currentState) == nextChar)
 			return currentState + 1;
-		int newState = 0;
-		for (int state = currentState + 1; state > 0; state--) {
-			int matches = 0;
-			for (int i = 0; i < currentState + 1 - state; i++) {
-				String suffix = newWord.substring(state);
-				for (int j = 0; j <= i; j++) {
-					if (pattern.charAt(j) != suffix.charAt(j)){
-						matches = 0;
-						break;
-					}
-					matches++;
-				}
+		for (int state = currentState; state > 0; state--) {
+			if (newWord.endsWith(pattern.substring(0, state))) {
+				return state;
 			}
-			newState = Math.max(matches, newState);
 		}
-		return newState;
+		return 0;
 	}
 	
 	private void advanceState(char c) {
@@ -65,11 +55,12 @@ public class PatternSearchAutomaton {
 	}
 	
 	public ArrayList<Integer> find(String text) {
+		this.state = 0;
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		for (int i = 0; i < text.length(); i++) {
-			if (isInFinalState())
-				result.add(i - pattern.length() - 1);
 			advanceState(text.charAt(i));
+			if (isInFinalState())
+				result.add(i - pattern.length() + 1);
 		}
 		return result;
 	}
@@ -79,8 +70,11 @@ public class PatternSearchAutomaton {
 		PatternSearchAutomaton pSA1 = new PatternSearchAutomaton(" na ");
 		PatternSearchAutomaton pSA2 = new PatternSearchAutomaton("na");
 		
-		
-		System.out.println(pSA1.find(" banana na ")); 
+		/* Para efectos de como usaremos el autómata,
+		 * la primera búsqueda es la única que tiene
+		 * sentido.
+		 */
+		System.out.println(pSA1.find(" banana na "));
 		System.out.println(pSA2.find(" banana na "));
 		
 		System.out.println(pSA1.find("banana na"));
