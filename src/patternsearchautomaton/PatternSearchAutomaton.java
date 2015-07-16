@@ -1,6 +1,9 @@
 package patternsearchautomaton;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import bookparser.BookParser;
 
 public class PatternSearchAutomaton {
 	int state;
@@ -65,19 +68,12 @@ public class PatternSearchAutomaton {
 		return result;
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
-		PatternSearchAutomaton pSA1 = new PatternSearchAutomaton(" na ");
-		PatternSearchAutomaton pSA2 = new PatternSearchAutomaton("na");
+		PatternSearchAutomaton pSA = new PatternSearchAutomaton(" ufos ");
+		String text = " " + BookParser.parseTextFile("/home/ekauffma/Documents/94ufos.txt") + " ";
 		
-		/* Para efectos de como usaremos el autómata,
-		 * la primera búsqueda es la única que tiene
-		 * sentido.
-		 */
-		System.out.println(pSA1.find(" banana na "));
-		System.out.println(pSA2.find(" banana na "));
 		
-		System.out.println(pSA1.find("banana na"));
-		System.out.println(pSA2.find("banana na"));
+		System.out.println(pSA.find(text));
 	}
 }

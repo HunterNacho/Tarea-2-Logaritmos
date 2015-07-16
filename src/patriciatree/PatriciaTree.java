@@ -56,7 +56,7 @@ public class PatriciaTree {
 //		PatriciaTree testTree = new PatriciaTree(BookParser.parseTextFile("/home/nacho/Documentos/Algoritmos2/Tarea-2-Logaritmos/libros/anatomyOfMelancholy.txt"));
 		PatriciaTree testTree = new PatriciaTree(text);  
 
-		System.out.println(testTree.find("romane"));
+		System.out.println(testTree.find("rubens"));
 	}
 	
 }
