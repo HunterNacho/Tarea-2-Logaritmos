@@ -1,0 +1,96 @@
+Book: war_peace_text.txt
+Size: 3.068635940551758 MB
+Total number of words: 572991
+Number of words to search: 57299
+
+Results for Patricia Tree
+Build time took: 1.493 seconds = 0.024883333333333334 minutes
+Search time took: 0.11 seconds = 0.0018333333333333333 minutes
+
+Results for Suffix Tree
+Build time took: 9.891 seconds = 0.16485 minutes
+Search time took: 133.102 seconds = 2.218366666666667 minutes
+
+Results for Pattern Search Automata
+Total build time took: 1.272 seconds = 0.0212 minutes
+Total search time took: 871.583 seconds = 14.526383333333333 minutes
+
+------------------------------------------
+
+Book: anatomyOfMelancholy.txt
+Size: 3.300766944885254 MB
+Total number of words: 536288
+Number of words to search: 53628
+
+Results for Patricia Tree
+Build time took: 1.811 seconds = 0.030183333333333333 minutes
+Search time took: 0.068 seconds = 0.0011333333333333334 minutes
+
+Results for Suffix Tree
+Build time took: 9.82 seconds = 0.16366666666666668 minutes
+Search time took: 56.857 seconds = 0.9476166666666667 minutes
+
+Results for Pattern Search Automata
+Total build time took: 1.187 seconds = 0.019783333333333333 minutes
+Total search time took: 795.976 seconds = 13.266266666666667 minutes
+
+------------------------------------------
+
+Book: Clarissa%20Harlowe.txt
+Size: 5.25826358795166 MB
+Total number of words: 1004698
+Number of words to search: 100469
+
+Results for Patricia Tree
+Build time took: 2.443 seconds = 0.040716666666666665 minutes
+Search time took: 0.109 seconds = 0.0018166666666666667 minutes
+
+Results for Suffix Tree
+Build time took: 27.334 seconds = 0.4555666666666667 minutes
+Search time took: 372.508 seconds = 6.208466666666666 minutes
+
+Results for Pattern Search Automata
+Total build time took: 2.275 seconds = 0.03791666666666667 minutes
+Total search time took: 2596.694 seconds = 43.27823333333333 minutes
+
+------------------------------------------
+
+Book: bible10.txt
+Size: 4.717995643615723 MB
+Total number of words: 791594
+Number of words to search: 79159
+
+Results for Patricia Tree
+Build time took: 1.681 seconds = 0.02801666666666667 minutes
+Search time took: 0.065 seconds = 0.0010833333333333333 minutes
+
+Results for Suffix Tree
+Build time took: 13.485 seconds = 0.22474999999999998 minutes
+Search time took: 441.815 seconds = 7.363583333333334 minutes
+
+Results for Pattern Search Automata
+Total build time took: 1.63 seconds = 0.027166666666666665 minutes
+Total search time took: 1593.248 seconds = 26.554133333333333 minutes
+
+------------------------------------------
+
+Book: lesms10.txt
+Size: 3.112560272216797 MB
+Total number of words: 575164
+Number of words to search: 57516
+
+Results for Patricia Tree
+Build time took: 1.333 seconds = 0.022216666666666666 minutes
+Search time took: 0.053 seconds = 8.833333333333333E-4 minutes
+
+Results for Suffix Tree
+Build time took: 9.7 seconds = 0.16166666666666665 minutes
+Search time took: 142.111 seconds = 2.3685166666666664 minutes
+
+Results for Pattern Search Automata
+Total build time took: 1.256 seconds = 0.020933333333333335 minutes
+Total search time took: 883.028 seconds = 14.717133333333333 minutes
+
+------------------------------------------
+
+Total time: 7977.096 seconds = 132.95159999999998 minutes

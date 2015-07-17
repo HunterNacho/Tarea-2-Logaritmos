@@ -19,6 +19,8 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		
+		long startTotalTime = System.currentTimeMillis();
+		
 		PrintStream out = new PrintStream(new FileOutputStream("/home/ekauffma/Documents/2015-1/logaritmos/Tarea-2-Logaritmos/results.txt"));
 		System.setOut(out);
 		
@@ -38,15 +40,16 @@ public class Main {
 			}
 			
 			System.out.println("Book: " + bookFile.getName());
-			System.out.println("Size: " + bookFile.length()/(1024.0*1024) + "MB");
+			System.out.println("Size: " + bookFile.length()/(1024.0*1024) + " MB");
 			System.out.println("Total number of words: " + words.length);
 			System.out.println("Number of words to search: " + wordsToSearch.size());
+			System.out.println();
 //			System.out.println("Words to search:");
 //			System.out.println(wordsToSearch.toString());
 			
 			
 			//Patricia Tree 
-			System.out.println("Building PatriciaTree...");
+//			System.out.println("Building PatriciaTree...");
 			long startBuild_time = System.currentTimeMillis(); 
 			
 			PatriciaTree patTree = new PatriciaTree(parsedBook);
@@ -54,7 +57,7 @@ public class Main {
 			long endBuild_time = System.currentTimeMillis();
 			long build_time = endBuild_time - startBuild_time;
 			
-			System.out.println("Searching words using Patricia Tree...");
+//			System.out.println("Searching words using Patricia Tree...");
 			long startSearch_time = System.currentTimeMillis();
 			for(int i = 0; i < wordsToSearch.size(); i++) {
 				String word = wordsToSearch.get(i);
@@ -65,13 +68,14 @@ public class Main {
 			long search_time = endSearch_time - startSearch_time;
 			
 			System.out.println("Results for Patricia Tree");
-			System.out.println("Build time took: " + build_time/1000 + " seconds = " + (build_time/1000)/60 + " minutes");
-			System.out.println("Search time took: " + search_time/1000 + " seconds = " + (search_time/1000)/60 + " minutes");
+			System.out.println("Build time took: " + build_time/1000.0 + " seconds = " + (build_time/1000.0)/60 + " minutes");
+			System.out.println("Search time took: " + search_time/1000.0 + " seconds = " + (search_time/1000.0)/60 + " minutes");
+			System.out.println();
 			
 			//Suffix Tree
 			SuffixTree sufTree = new SuffixTree(bookFile.getPath());
 			int bookLen = SuffixTree.bookLen;
-			System.out.println("Building Suffix Tree...");
+//			System.out.println("Building Suffix Tree...");
 			startBuild_time = System.currentTimeMillis(); 
 			for(int i=0; i < bookLen; i++) {
 				sufTree.insert(i);	
@@ -80,7 +84,7 @@ public class Main {
 			endBuild_time = System.currentTimeMillis();
 			build_time = endBuild_time - startBuild_time;
 			
-			System.out.println("Searching words using Suffix Tree...");
+//			System.out.println("Searching words using Suffix Tree...");
 			startSearch_time = System.currentTimeMillis();
 			for(int i = 0; i < wordsToSearch.size(); i++) {
 				String word = " " + wordsToSearch.get(i) + " ";
@@ -91,8 +95,9 @@ public class Main {
 			search_time = endSearch_time - startSearch_time;
 			
 			System.out.println("Results for Suffix Tree");
-			System.out.println("Build time took: " + build_time/1000 + " seconds = " + (build_time/1000)/60 + " minutes");
-			System.out.println("Search time took: " + search_time/1000 + " seconds = " + (search_time/1000)/60 + " minutes");
+			System.out.println("Build time took: " + build_time/1000.0 + " seconds = " + (build_time/1000.0)/60 + " minutes");
+			System.out.println("Search time took: " + search_time/1000.0 + " seconds = " + (search_time/1000.0)/60 + " minutes");
+			System.out.println();
 			
 			//Automata
 			String text = " " + parsedBook + " ";
@@ -115,11 +120,16 @@ public class Main {
 			}
 			
 			System.out.println("Results for Pattern Search Automata");
-			System.out.println("Total build time took: " + buildTime/1000 + " seconds = " + (buildTime/1000)/60 + " minutes");
-			System.out.println("Total search time took: " + findTime/1000 + " seconds = " + (findTime/1000)/60 + " minutes");			
-			
+			System.out.println("Total build time took: " + buildTime/1000.0 + " seconds = " + (buildTime/1000.0)/60 + " minutes");
+			System.out.println("Total search time took: " + findTime/1000.0 + " seconds = " + (findTime/1000.0)/60 + " minutes");			
+			System.out.println();
+			System.out.println("------------------------------------------");
+			System.out.println();
 		}
-		
+	
+		long endTotalTime = System.currentTimeMillis();
+		long totalTime = endTotalTime - startTotalTime;
+		System.out.println("Total time: " + totalTime/1000.0 + " seconds = " + (totalTime/1000.0)/60 + " minutes");
 	}
 
 }
