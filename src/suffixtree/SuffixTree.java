@@ -16,11 +16,11 @@ public class SuffixTree {
 	
 	public SuffixTree(String path) throws IOException {
 		
-		//Descomentar para testear usando un path a un archivo de texto
+		//Descomentar ejecutar Main.java del paquete main
 		book = " " + BookParser.parseTextFile(path) + " $";
 		
 		
-		//Descomentar para usar un texto directamente 
+		//Descomentar para ejecutar main de esta clase 
 //		book = path;
 		
 		
@@ -53,13 +53,16 @@ public class SuffixTree {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		String text = " hola hola hola hola hola hola hola hola hola hola hola hola $";
-		SuffixTree sufTree = new SuffixTree(text);
+		String text, word;
+		
+		text = "hola hola hola hola hola hola hola hola hola hola hola hola";
+		word = "hola";
+		
+		SuffixTree sufTree = new SuffixTree(" " + text + " $");
 		for(int i=0; i < bookLen; i++) {
 			sufTree.insert(i);
 		}
-		
-		System.out.println(sufTree.find(" hola "));
+		System.out.println(sufTree.find(" " + word + " "));
 
 	}
 

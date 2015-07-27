@@ -70,10 +70,13 @@ public class PatternSearchAutomaton {
 	
 	public static void main(String[] args) throws IOException {
 		
-		PatternSearchAutomaton pSA = new PatternSearchAutomaton(" ufos ");
-		String text = " " + BookParser.parseTextFile("/home/ekauffma/Documents/94ufos.txt") + " ";
+		String text, word;
 		
+		text = "hola hola hola hola";
+		word = "hola";
 		
-		System.out.println(pSA.find(text));
+		PatternSearchAutomaton pSA = new PatternSearchAutomaton(" " + word + " ");	
+		
+		System.out.println(pSA.find(" " + text + " "));
 	}
 }
