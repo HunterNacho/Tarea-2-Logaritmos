@@ -16,8 +16,14 @@ public class SuffixTree {
 	
 	public SuffixTree(String path) throws IOException {
 		
+		//Descomentar para testear usando un path a un archivo de texto
 		book = " " + BookParser.parseTextFile(path) + " $";
+		
+		
+		//Descomentar para usar un texto directamente 
 //		book = path;
+		
+		
 		bookLen = book.length();
 		LeafNode dummyLeafNode;
 		InnerNode firstNode;
@@ -47,7 +53,8 @@ public class SuffixTree {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		SuffixTree sufTree = new SuffixTree(" hola hola hola hola hola hola hola hola hola hola hola hola $");
+		String text = " hola hola hola hola hola hola hola hola hola hola hola hola $";
+		SuffixTree sufTree = new SuffixTree(text);
 		for(int i=0; i < bookLen; i++) {
 			sufTree.insert(i);
 		}
